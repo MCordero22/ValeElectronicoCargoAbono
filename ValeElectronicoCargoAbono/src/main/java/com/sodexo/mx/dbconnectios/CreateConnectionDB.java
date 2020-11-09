@@ -11,13 +11,12 @@ public class CreateConnectionDB {
 		try {
 			Connection conn =openConnectionOracle();
 			
-			String query = "select * from om_catalog_users where username = ?";
+			String query = "select VCLAVE_MOV from SEV.SEV_TCARGOS_ABONOS where NID_CA = ?";
             PreparedStatement st = conn.prepareStatement(query);
-            
-            st.setString(1, "mcordero");
+            st.setInt(1,22594);
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-            	System.out.println("respuesta  " +rs.getString("FIRST_NAME"));
+            	System.out.println("respuesta  " +rs.getString("VCLAVE_MOV"));
             }
 		}catch(Exception ex) {
 			
@@ -27,15 +26,15 @@ public class CreateConnectionDB {
 	
 	public static Connection openConnectionOracle() throws Exception {
 		
-        //System.out.println("++++++++++++++  OPEN CONN");
+        System.out.println("++++++++++++++  OPEN CONN");
         String myDriver = "oracle.jdbc.OracleDriver";
         //String myUrl = "jdbc:oracle:thin:@192.168.1.103:1521/xe";
         //String myUrl = "jdbc:oracle:thin:@34.122.188.80:1521/xe";
-        String myUrl = "jdbc:oracle:thin:@172.21.20.143:1521/CVBPELD";
+        String myUrl = "jdbc:oracle:thin:@10.52.21.4:1521/SEVDES";
         Class.forName(myDriver);
         //Connection conn = DriverManager.getConnection(myUrl, "SISAMEX", "welcome1");
-        Connection conn = DriverManager.getConnection(myUrl, "INTFWK", "welcome1");
-        //System.out.println("++++++++++++++  END OPEN CONN");
+        Connection conn = DriverManager.getConnection(myUrl, "SEV", "SEV001");
+        System.out.println("++++++++++++++  END OPEN CONN");
         return conn;
 
     }
