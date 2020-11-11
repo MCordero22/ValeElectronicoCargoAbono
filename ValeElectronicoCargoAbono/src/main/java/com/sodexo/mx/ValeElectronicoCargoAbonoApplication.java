@@ -28,14 +28,16 @@ import com.sodexo.mx.utils.Constants;
 
 @SpringBootApplication
 public class ValeElectronicoCargoAbonoApplication {
-	// @Autowired
-	// JdbcTemplate jdbcTemplate;
+	
 	private final static Logger LOGGER = Logger.getLogger("log");
 
 	public static void main(String[] args) throws IOException, SQLException {
 		SpringApplication.run(ValeElectronicoCargoAbonoApplication.class, args);
 
 		executeProcess();
+		//OperationApiRestApache ins = new OperationApiRestApache();
+		//String token = ins.getToken2("usuario5", "P4ssw0rd5", "http://10.52.24.59:9890/intsdx-esb_syc/getToken"); 
+		//ins.retiro(token, "529e625c8c2bf37c6334aae495a1d0f8", "50632", "195379", "5062733000422709", "1", "1"); // agrega parametros validos pa probar este servicio
 
 	}
 
@@ -61,6 +63,7 @@ public class ValeElectronicoCargoAbonoApplication {
 		String idAplicacion = mainProperties.getProperty("idAplicacion");
 		String urlSycToken = mainProperties.getProperty("url_syc_token");
 
+		LOGGER.log(Level.INFO, "Inicia proceso...");
 		int contador=0;
 		OperationsApiRest operation = new OperationsApiRest();
 		String token = operation.getToken(user, password, urlSycToken);
